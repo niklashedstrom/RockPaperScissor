@@ -1,6 +1,6 @@
 # RockPaperScissor
 
-Project can be run from the terminal with Maven using: 
+Project can be run from the top of the prjoect folder in the terminal with Maven using: 
 ```
 mvn spring-boot:run
 ```
