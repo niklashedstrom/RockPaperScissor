@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Play a game of Rock Paper Scissor</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<script type = "text/javascript">
+  function hideSelection(Id){
+    let selection = (document.getElementsByName('choice'+Id)[0].style.display === "none" ? '' : "none")
+    document.getElementsByName('choice'+Id)[0].style.display = selection
+    document.getElementsByName('hidden'+Id)[0].style.display = (selection === "none" ? '' : 'none')
+  }
+</script>
+
+<body>
+<h1>Let's Play Rock Paper Scissor</h1>
+<form action="#" th:action="@{/play}" th:object="${game}" method="post">
+    <div class="flex">
+        <div class="flex">
+            <p>Player 1 select: </p>
+            <div name="choiceOne" style="display: ''">
+                <select class="text" name="choices" th:field="*{choiceOne}">
+                    <option th:each="choice : ${T(com.example.RockPaperScissor.Choice).values()}"
+                            th:value="${choice}" th:text="${choice}"></option>
+                </select>
+            </div>
+            <p name="hiddenOne" style="display: none">Hidden</p>
+        </div>
+        <div class="flex">
+            <p>Player 2 select: </p>
+            <div name="choiceTwo" style="display: ''">
+                <select class="text" name="choices" th:field="*{choiceTwo}">
+                    <option th:each="choice : ${T(com.example.RockPaperScissor.Choice).values()}"
+                            th:value="${choice}" th:text="${choice}"></option>
+                </select>
+            </div>
+            <p name="hiddenTwo" style="display: none">Hidden</p>
+        </div>
+    </div>
+    <div class="flex"><input class="text" type="submit" value="Submit" /></div>
+</form>
+<div class="flex">
+    <div  class="flex">
+        <button class="text" onclick="hideSelection('One')">Hide Player 1:s Answer</button>
+    </div>
+    <div class="flex">
+        <button class="text" onclick="hideSelection('Two')">Hide Player 2:s Answer</button>
+    </div>
+</div>
+
+</body>
+</html>
